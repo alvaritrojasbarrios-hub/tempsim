@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simuladores Interactivos</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="header-tag">LAB</span>
+      <h1 class="site-title">Simuladores<br /><em>Interactivos</em></h1>
+      <p class="site-subtitle">Herramientas matemáticas para cálculo físico y probabilístico</p>
+    </div>
+    <div class="header-deco" aria-hidden="true">∑ e<sup>x</sup> C(n,r)</div>
+  </header>
+
+  <main class="main-grid">
+
+    <!-- ========== EJERCICIO 1 ========== -->
+    <section class="card" id="card-heat">
+      <div class="card-label">01</div>
+      <div class="card-content">
+        <h2 class="card-title">Transferencia de Calor</h2>
+        <p class="card-desc">Ley de Enfriamiento de Newton — calcula la temperatura final de un objeto tras un tiempo determinado.</p>
+        <div class="formula-box">
+          T = T<sub>s</sub> + (T<sub>0</sub> − T<sub>s</sub>) · e<sup>−k·t</sup>
+        </div>
+
+        <form id="form-heat" novalidate>
+          <div class="field-grid">
+            <div class="field">
+              <label for="T0">Temperatura inicial (T₀)</label>
+              <div class="input-wrap">
+                <input type="number" id="T0" value="120" required placeholder="ej. 120" />
+                <span class="unit">°C</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="Ts">Temperatura del entorno (Tₛ)</label>
+              <div class="input-wrap">
+                <input type="number" id="Ts" value="38" required placeholder="ej. 38" />
+                <span class="unit">°C</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="k">Constante de enfriamiento (k)</label>
+              <div class="input-wrap">
+                <input type="number" id="k" value="0.45" step="0.01" required placeholder="ej. 0.45" />
+                <span class="unit">k</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="t">Tiempo (t)</label>
+              <div class="input-wrap">
+                <input type="number" id="t" value="3" required placeholder="ej. 3" />
+                <span class="unit">h</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn" onclick="calcularCalor()">
+            <span>Calcular temperatura</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+
+        <div class="result-box" id="result-heat" hidden>
+          <div class="result-label">Temperatura final</div>
+          <div class="result-value" id="heat-value">—</div>
+          <div class="result-unit">grados Celsius</div>
+        </div>
+        <div class="error-msg" id="error-heat" hidden></div>
+      </div>
+    </section>
+
+    <!-- ========== EJERCICIO 2 ========== -->
+    <section class="card" id="card-combo">
+      <div class="card-label">02</div>
+      <div class="card-content">
+        <h2 class="card-title">Combinaciones del Sorteo</h2>
+        <p class="card-desc">Calcula el total de combinaciones posibles para dos grupos independientes de selección simultánea.</p>
+        <div class="formula-box">
+          C(n, r) = n! / (r! · (n − r)!) &nbsp;→&nbsp; C<sub>total</sub> = C<sub>1</sub> × C<sub>2</sub>
+        </div>
+
+        <form id="form-combo" novalidate>
+          <div class="group-grid">
+            <div class="group-block">
+              <div class="group-title">Grupo 1</div>
+              <div class="field">
+                <label for="n1">Total de elementos (n₁)</label>
+                <div class="input-wrap">
+                  <input type="number" id="n1" value="59" min="0" required placeholder="ej. 59" />
+                  <span class="unit">n</span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="r1">Elementos a elegir (r₁)</label>
+                <div class="input-wrap">
+                  <input type="number" id="r1" value="5" min="0" required placeholder="ej. 5" />
+                  <span class="unit">r</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="group-sep" aria-hidden="true">×</div>
+
+            <div class="group-block">
+              <div class="group-title">Grupo 2</div>
+              <div class="field">
+                <label for="n2">Total de elementos (n₂)</label>
+                <div class="input-wrap">
+                  <input type="number" id="n2" value="35" min="0" required placeholder="ej. 35" />
+                  <span class="unit">n</span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="r2">Elementos a elegir (r₂)</label>
+                <div class="input-wrap">
+                  <input type="number" id="r2" value="1" min="0" required placeholder="ej. 1" />
+                  <span class="unit">r</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn" onclick="calcularCombinaciones()">
+            <span>Calcular combinaciones</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+
+        <div class="result-box" id="result-combo" hidden>
+          <div class="result-label">Total de combinaciones posibles</div>
+          <div class="result-value" id="combo-value">—</div>
+          <div class="combo-detail" id="combo-detail"></div>
+        </div>
+        <div class="error-msg" id="error-combo" hidden></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    Rojas Alvaro · Desafío Técnico de Programación Web
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
